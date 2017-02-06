@@ -1,0 +1,16 @@
+.checkstyle
+.classpath
+.externalToolBuilders
+.pmd
+.project
+.settings
+.umlproject
+bin
+maven-eclipse.xml
+target
+*.log
+*.csv
+*.iml
+.idea
+isodata-app/src/test/resources/*
+!isodata-app/src/test/resources/*.json

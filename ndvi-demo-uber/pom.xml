@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- =========================================================== -->
+    <!-- Project Description -->
+    <!-- =========================================================== -->
+    <artifactId>ndvi-demo-uber</artifactId>
+    <packaging>jar</packaging>
+    <name>GAF NDVI Demo Uber JAR</name>
+    <description>
+
+    </description>
+
+    <parent>
+        <groupId>de.gaf.demo</groupId>
+        <artifactId>ndvi-demo-app</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <url>http://www.gaf.de/</url>
+    <inceptionYear>2017</inceptionYear>
+
+    <!-- =========================================================== -->
+    <!-- Properties and Profiles -->
+    <!-- =========================================================== -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <finalName>ndvi-demo-app-0.1</finalName>
+                    <artifactSet>
+                        <excludes>
+                            <exclude>*:scala-actors</exclude>
+                            <exclude>*:scala-compiler</exclude>
+                            <exclude>*:scala-continuations</exclude>
+                            <exclude>*:scala-library</exclude>
+                            <exclude>*:scala-parser-combinators</exclude>
+                            <exclude>*:scala-reflect</exclude>
+                            <exclude>*:scala-swing</exclude>
+                            <exclude>*:scala-xml</exclude>
+                        </excludes>
+                    </artifactSet>
+                    <filters>
+                        <filter>
+                            <!-- Do not copy the signatures in the META-INF folder.
+                            Otherwise, this might cause SecurityExceptions when using the JAR. -->
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <transformers>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>de.gaf.demo.workflow.Starter</mainClass>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                            <resource>reference.conf</resource>
+                        </transformer>
+                    </transformers>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- =========================================================== -->
+    <!-- Dependency Management -->
+    <!-- =========================================================== -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-graphx_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-launcher_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-mllib_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-network-common_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-network-shuffle_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming_${scala.binary.version}</artifactId>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- =========================================================== -->
+    <!-- Dependencies -->
+    <!-- =========================================================== -->
+    <dependencies>
+        <dependency>
+            <groupId>de.gaf.demo</groupId>
+            <artifactId>ndvi-demo</artifactId>
+            <!--<version>0.1.0-SNAPSHOT</version>-->
+        </dependency>
+    </dependencies>
+</project>

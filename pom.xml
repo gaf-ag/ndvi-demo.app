@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- =========================================================== -->
+    <!-- Project Description -->
+    <!-- =========================================================== -->
+    <groupId>de.gaf.demo</groupId>
+    <artifactId>ndvi-demo-app</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>NDVI Demo Application</name>
+    <description>
+
+    </description>
+
+    <properties>
+        <scala.version>2.11.8</scala.version>
+        <scala.binary.version>2.11</scala.binary.version>
+        <spark.version>2.0.2</spark.version>
+        <geotrellis.version>1.0.0</geotrellis.version>
+
+        <scalatest-maven-plugin.version>1.0</scalatest-maven-plugin.version>
+        <exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
+        <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>
+        <unique.version>0.1.0</unique.version>
+
+        <CodeCacheSize>512m</CodeCacheSize>
+    </properties>
+
+    <url>http://www.gaf.de/</url>
+    <inceptionYear>2017</inceptionYear>
+
+    <!-- =========================================================== -->
+    <!-- Modules -->
+    <!-- =========================================================== -->
+    <modules>
+        <module>ndvi-demo</module>
+        <module>ndvi-demo-uber</module>
+    </modules>
+
+    <!-- =========================================================== -->
+    <!-- Dependency Management -->
+    <!-- =========================================================== -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.gaf.demo</groupId>
+                <artifactId>ndvi-demo</artifactId>
+                <version>0.1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
